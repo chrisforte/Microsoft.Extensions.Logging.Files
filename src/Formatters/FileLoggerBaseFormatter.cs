@@ -1,9 +1,10 @@
 ﻿
-public abstract class FileLoggerBaseFormatter : IDisposable
+public abstract class FileLoggerBaseFormatter : IFileLoggerBaseFormatter, IDisposable
 {
     protected IDisposable _optionsReloadToken;
 
     public string Name { get; }
+
     internal FileLoggerFormatterOptions FormatterOptions { get; set; }
 
     protected FileLoggerBaseFormatter(string name, IOptionsMonitor<FileLoggerFormatterOptions> filterOptions)

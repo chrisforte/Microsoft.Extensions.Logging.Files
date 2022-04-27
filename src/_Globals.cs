@@ -8,6 +8,7 @@ global using System;
 global using System.Buffers;
 global using System.Collections.Concurrent;
 global using System.Collections.Generic;
+global using System.Collections.ObjectModel;
 global using System.Globalization;
 global using System.IO;
 global using System.Linq;

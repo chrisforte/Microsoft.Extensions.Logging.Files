@@ -57,13 +57,13 @@ public class JSONFormatter : FileLoggerBaseFormatter
 
     internal class FlattenedLogEntry
     {
-        public string Timestamp { get; set; }
-        public string Level { get; set; }
-        public string Message { get; set; }
-        public string Exception { get; set; }
-        public ICollection<object> Scopes { get; set; } = new HashSet<object>();
-        public EventId EventID { get; set; }
+        public string? Timestamp { get; set; }
+        public string? Level { get; set; }
+        public string? Message { get; set; }
+        public string? Exception { get; set; }
+        public ICollection<object>? Scopes { get; set; } = new Collection<object>();
+        public EventId? EventID { get; set; }
         public int? PID { get; set; }
-        public string User { get; set; }
+        public string? User { get; set; }
     }
 }

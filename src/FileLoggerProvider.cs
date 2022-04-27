@@ -5,7 +5,7 @@ public sealed class FileLoggerProvider : ILoggerProvider, ISupportExternalScope
 
     private readonly IOptionsMonitor<FileLoggerOptions> _options;
     private readonly ConcurrentDictionary<string, FileLogger> _loggers;
-    private readonly ConcurrentDictionary<string, FileLoggerBaseFormatter> _formatters;
+    private readonly ConcurrentDictionary<string, IFileLoggerBaseFormatter> _formatters;
     private FileLoggerProcessor _processor;
     private readonly IDisposable _onChangeToken;
     private IExternalScopeProvider _scopeProvider;
@@ -14,9 +14,9 @@ public sealed class FileLoggerProvider : ILoggerProvider, ISupportExternalScope
 
     #region ctor
 
-    public FileLoggerProvider(IOptionsMonitor<FileLoggerOptions> options) : this(options, Array.Empty<FileLoggerBaseFormatter>()) { }
+    public FileLoggerProvider(IOptionsMonitor<FileLoggerOptions> options) : this(options, Array.Empty<IFileLoggerBaseFormatter>()) { }
 
-    public FileLoggerProvider(IOptionsMonitor<FileLoggerOptions> options, IEnumerable<FileLoggerBaseFormatter> formatters)
+    public FileLoggerProvider(IOptionsMonitor<FileLoggerOptions> options, IEnumerable<IFileLoggerBaseFormatter> formatters)
     {
         _options = options;
         _loggers = new(StringComparer.OrdinalIgnoreCase);
@@ -38,7 +38,7 @@ public sealed class FileLoggerProvider : ILoggerProvider, ISupportExternalScope
 
     #endregion
 
-    private void SetFormatters(IEnumerable<FileLoggerBaseFormatter> formatters = null)
+    private void SetFormatters(IEnumerable<IFileLoggerBaseFormatter> formatters = null)
     {
         if (formatters is null || !formatters.Any())
         {

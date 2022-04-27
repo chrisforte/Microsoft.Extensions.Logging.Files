@@ -11,21 +11,29 @@ internal sealed class FileLoggerStream : IDisposable
         _stream = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite, 4096, FileOptions.WriteThrough);
     }
 
-    public void GoToEnd() => _stream.Seek(0, SeekOrigin.End);
+    public void GoToEnd() => _stream?.Seek(0, SeekOrigin.End);
 
     public void Append(string content)
     {
-        GoToEnd();
-        ReadOnlySpan<byte> _buffer = new(Encoding.UTF8.GetBytes(content));
-        _stream.Write(_buffer);
-        _stream.Flush(true);
+        try
+        {
+            GoToEnd();
+            ReadOnlySpan<byte> _buffer = new(Encoding.UTF8.GetBytes(content));
+            _stream?.Write(_buffer);
+            _stream?.Flush(true);
+        }
+        finally { }
     }
 
     public long GetCurrentSize() => RandomAccess.GetLength(_stream.SafeFileHandle);
 
     public void Dispose()
     {
-        _stream.Flush(true);
-        _stream.Dispose();
+        try
+        {
+            _stream?.Flush(true);
+            _stream?.Dispose();
+        }
+        finally { }
     }
 }

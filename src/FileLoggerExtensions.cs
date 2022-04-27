@@ -1,4 +1,7 @@
-﻿public static class FileLoggerExtensions
+﻿/// <summary>
+/// Extension methods to add <see cref="FileLogger"/> to the logging configuration
+/// </summary>
+public static class FileLoggerExtensions
 {
     /// <summary>
     /// Add a default <see cref="FileLogger"/> instance to the logging configuration.
@@ -29,7 +32,7 @@
 
     /// <summary>
     /// Add a <see cref="FileLogger"/> instance to the logging configuration with the supplied <see cref="FileLoggerOptions">options</see>, 
-    /// using the specified <see cref="FileLoggerBaseFormatter">formatter</see> implementation.
+    /// using the specified <see cref="IFileLoggerBaseFormatter">formatter</see> implementation.
     /// </summary>
     /// <typeparam name="TFormatter"></typeparam>
     /// <param name="builder"></param>
@@ -48,7 +51,7 @@
 
     /// <summary>
     /// Add a <see cref="FileLogger"/> instance to the logging configuration with the supplied <see cref="FileLoggerOptions">options</see>, 
-    /// using the specified <see cref="FileLoggerBaseFormatter">formatter</see> implementation with supplied <see cref="FileLoggerFormatterOptions">formatter options</see>.
+    /// using the specified <see cref="IFileLoggerBaseFormatter">formatter</see> implementation with supplied <see cref="FileLoggerFormatterOptions">formatter options</see>.
     /// </summary>
     /// <typeparam name="TFormatter"></typeparam>
     /// <param name="builder"></param>

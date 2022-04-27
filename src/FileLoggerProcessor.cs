@@ -27,7 +27,7 @@ public sealed class FileLoggerProcessor : IDisposable
         {
             IsBackground = true,
             Priority = ThreadPriority.BelowNormal,
-            Name = $"Simple file logger processor"
+            Name = this.GetType().FullName
         };
         _outputThread.Start();
     }
@@ -52,7 +52,7 @@ public sealed class FileLoggerProcessor : IDisposable
         {
             WriteMessage(message);
         }
-        catch (Exception) { }
+        finally { }
     }
 
     /// <summary>
@@ -86,16 +86,20 @@ public sealed class FileLoggerProcessor : IDisposable
     /// <param name="entry"></param>
     private void WriteMessage(FileLoggerEntry entry)
     {
-        string _alignedFileName = GetCurrentFileName();
-
-        if (_logOutput is null | string.Compare(_logOutput?.FileName, _alignedFileName, StringComparison.OrdinalIgnoreCase) != 0)
+        try
         {
-            string _builtPath = Path.Combine(GetBaseDirectory(), _alignedFileName);
-            _logOutput?.Dispose();
-            _logOutput = new(_builtPath);
-        }
+            string _alignedFileName = GetCurrentFileName();
 
-        _logOutput.Append(entry.Message);
+            if (_logOutput is null | string.Compare(_logOutput?.FileName, _alignedFileName, StringComparison.OrdinalIgnoreCase) != 0)
+            {
+                string _builtPath = Path.Combine(GetBaseDirectory(), _alignedFileName);
+                _logOutput?.Dispose();
+                _logOutput = new(_builtPath);
+            }
+
+            _logOutput.Append(entry.Message);
+        }
+        finally { }
     }
 
     private string GetBaseDirectory()
@@ -141,10 +145,12 @@ public sealed class FileLoggerProcessor : IDisposable
         {
             lock (_syncRoot)
             {
-                _logOutput.Dispose();
+                _logOutput?.Dispose();
             }
 
             _messageQueue.CompleteAdding();
+            _messageQueue?.Dispose();
+
             _outputThread.Join(TimeSpan.FromSeconds(1));
         }
         catch (ThreadStateException) { }
