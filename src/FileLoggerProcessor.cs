@@ -162,11 +162,7 @@ public sealed class FileLoggerProcessor : IDisposable
     {
         try
         {
-            lock (_syncRoot)
-            {
-                _logOutput?.Dispose();
-            }
-
+            _logOutput?.Dispose();
             _messageQueue.CompleteAdding();
             _messageQueue?.Dispose();
 
