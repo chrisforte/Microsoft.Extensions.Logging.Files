@@ -1,17 +1,24 @@
 ﻿
 /// <summary>
-/// Allows basic log message formatting.
+/// Format log messages with minimal formatting.
 /// </summary>
 public sealed class BasicFormatter : FileLoggerBaseFormatter
 {
     #region props
 
+    /// <summary>
+    /// The default name of this formatter
+    /// </summary>
     public const string NAME = @"basic";
 
     #endregion
 
     #region ctor
 
+    /// <summary>
+    /// Create a new instance of <see cref="BasicFormatter"/> with the supplied options
+    /// </summary>
+    /// <param name="filterOptions">The options to use for this formatter</param>
     public BasicFormatter(IOptionsMonitor<FileLoggerFormatterOptions> filterOptions) : base(NAME, filterOptions) { }
 
     #endregion

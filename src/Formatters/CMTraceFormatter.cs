@@ -1,17 +1,24 @@
 ﻿
 /// <summary>
-/// Allows log message formatting to view with CMTrace.
+/// Format log messages to be viewed with CMTrace.
 /// </summary>
 public sealed class CMTraceFormatter : FileLoggerBaseFormatter
 {
     #region props
 
+    /// <summary>
+    /// The default name of this formatter
+    /// </summary>
     public const string NAME = @"cmtrace";
 
     #endregion
 
     #region ctor
 
+    /// <summary>
+    /// Create a new instance of <see cref="CMTraceFormatter"/> with the supplied options
+    /// </summary>
+    /// <param name="filterOptions">The options to use for this formatter</param>
     public CMTraceFormatter(IOptionsMonitor<FileLoggerFormatterOptions> filterOptions) : base(NAME, filterOptions) { }
 
     #endregion

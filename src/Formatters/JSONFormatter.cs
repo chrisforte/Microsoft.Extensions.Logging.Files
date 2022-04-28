@@ -1,15 +1,25 @@
 ﻿using System.Text.Json;
 
+/// <summary>
+/// Format log messages as JSON objects.
+/// </summary>
 public class JSONFormatter : FileLoggerBaseFormatter
 {
     #region props
 
+    /// <summary>
+    /// The default name of this formatter
+    /// </summary>
     public const string NAME = @"json";
 
     #endregion
 
     #region ctor
 
+    /// <summary>
+    /// Create a new instance of <see cref="JSONFormatter"/> with the supplied options
+    /// </summary>
+    /// <param name="filterOptions">The options to use for this formatter</param>
     public JSONFormatter(IOptionsMonitor<FileLoggerFormatterOptions> filterOptions) : base(NAME, filterOptions) { }
 
     #endregion

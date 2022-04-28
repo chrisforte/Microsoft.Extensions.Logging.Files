@@ -1,4 +1,7 @@
 ﻿
+/// <summary>
+/// A type that can create instances of <see cref="FileLogger"/>
+/// </summary>
 public sealed class FileLoggerProvider : ILoggerProvider, ISupportExternalScope
 {
     #region props
@@ -14,8 +17,17 @@ public sealed class FileLoggerProvider : ILoggerProvider, ISupportExternalScope
 
     #region ctor
 
+    /// <summary>
+    /// Create a new instance of <see cref="FileLoggerProvider"/> with no formatters
+    /// </summary>
+    /// <param name="options">The options to use when creating <see cref="FileLogger"/> instances</param>
     public FileLoggerProvider(IOptionsMonitor<FileLoggerOptions> options) : this(options, Array.Empty<IFileLoggerBaseFormatter>()) { }
 
+    /// <summary>
+    /// Create a new instance of <see cref="FileLoggerProvider"/> with the supplied formatters
+    /// </summary>
+    /// <param name="options">The options to use when creating <see cref="FileLogger"/> instances</param>
+    /// <param name="formatters">The formatters to use</param>
     public FileLoggerProvider(IOptionsMonitor<FileLoggerOptions> options, IEnumerable<IFileLoggerBaseFormatter> formatters)
     {
         _options = options;
@@ -29,6 +41,9 @@ public sealed class FileLoggerProvider : ILoggerProvider, ISupportExternalScope
         _processor = new(options.CurrentValue);
     }
 
+    /// <summary>
+    /// Cleanup and dispose this instance of <see cref="FileLoggerProvider"/>
+    /// </summary>
     public void Dispose()
     {
         _onChangeToken?.Dispose();
@@ -76,6 +91,11 @@ public sealed class FileLoggerProvider : ILoggerProvider, ISupportExternalScope
         }
     }
 
+    /// <summary>
+    /// Creates a new <see cref="ILogger"/> instance.
+    /// </summary>
+    /// <param name="name">The name for messages produced by the logger.</param>
+    /// <returns>The instance of <see cref="ILogger"/> that was created</returns>
     public ILogger CreateLogger(string name)
     {
         if (_options.CurrentValue.FormatterName == null || !_formatters.TryGetValue(_options.CurrentValue.FormatterName, out var logFormatter))
@@ -92,6 +112,10 @@ public sealed class FileLoggerProvider : ILoggerProvider, ISupportExternalScope
         });
     }
 
+    /// <summary>
+    /// Sets external scope information source for logger provider.
+    /// </summary>
+    /// <param name="scopeProvider">The provider of scope data.</param>
     public void SetScopeProvider(IExternalScopeProvider scopeProvider)
     {
         _scopeProvider = scopeProvider;

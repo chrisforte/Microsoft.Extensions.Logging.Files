@@ -16,6 +16,11 @@ public sealed class FileLoggerProcessor : IDisposable
 
     #endregion
 
+    /// <summary>
+    /// Create a new instance of the message processor with the supplied <see cref=" FileLoggerOptions"/>
+    /// </summary>
+    /// <param name="options">The options to use for this message processor</param>
+    /// <exception cref="ArgumentNullException"></exception>
     public FileLoggerProcessor(FileLoggerOptions options)
     {
         if (options is null) { throw new ArgumentNullException(nameof(options)); }
@@ -139,6 +144,9 @@ public sealed class FileLoggerProcessor : IDisposable
         return _filename;
     }
 
+    /// <summary>
+    /// Cleanup and dispose this instance of the message processor
+    /// </summary>
     public void Dispose()
     {
         try
