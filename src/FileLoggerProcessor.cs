@@ -28,7 +28,7 @@ public sealed class FileLoggerProcessor : IDisposable
     #endregion
 
     /// <summary>
-    /// Create a new instance of the message processor with the supplied <see cref=" FileLoggerOptions"/>
+    /// Create a new instance of the message processor with the supplied <see cref="FileLoggerOptions"/>
     /// </summary>
     /// <param name="options">The options to use for this message processor</param>
     /// <exception cref="ArgumentNullException"></exception>
