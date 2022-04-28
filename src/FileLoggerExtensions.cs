@@ -52,7 +52,7 @@ public static class FileLoggerExtensions
         builder.Services.Configure<FileLoggerOptions>(configuration);
 
         builder.AddConfiguration();
-        builder.Services.TryAddEnumerable(ServiceDescriptor.Singleton<FileLoggerBaseFormatter, TFormatter>());
+        builder.Services.TryAddEnumerable(ServiceDescriptor.Singleton<IFileLoggerBaseFormatter, TFormatter>());
 
         return builder;
     }
@@ -72,7 +72,7 @@ public static class FileLoggerExtensions
         builder.Services.Configure<FileLoggerOptions>(configuration);
 
         builder.AddConfiguration();
-        builder.Services.TryAddEnumerable(ServiceDescriptor.Singleton<FileLoggerBaseFormatter, TFormatter>());
+        builder.Services.TryAddEnumerable(ServiceDescriptor.Singleton<IFileLoggerBaseFormatter, TFormatter>());
         builder.Services.Configure<FileLoggerFormatterOptions>(formatter);
 
         return builder;
