@@ -1,4 +1,9 @@
-﻿
+﻿#if NET5_0
+using System;
+using System.IO;
+using System.Text;
+#endif
+
 internal sealed class FileLoggerStream : IDisposable
 {
     public string BasePath => Path.GetDirectoryName(_stream.Name);
@@ -25,7 +30,14 @@ internal sealed class FileLoggerStream : IDisposable
         finally { }
     }
 
-    public long GetCurrentSize() => RandomAccess.GetLength(_stream.SafeFileHandle);
+    public long GetCurrentSize()
+    {
+#if NET5_0
+        return _stream.Length;
+#else
+        return RandomAccess.GetLength(_stream.SafeFileHandle);
+#endif
+    }
 
     public void Dispose()
     {

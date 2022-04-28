@@ -1,4 +1,9 @@
-﻿
+﻿#if NET5_0
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.Options;
+#endif
+
 /// <summary>
 /// Formatting-specific options for <see cref="BasicFormatter"/>.
 /// </summary>

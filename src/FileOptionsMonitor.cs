@@ -1,4 +1,9 @@
-﻿
+﻿#if NET5_0
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using System;
+#endif
+
 internal class FileOptionsMonitor<TFilterOptions> : IOptionsMonitor<TFilterOptions> where TFilterOptions : LoggerFilterOptions
 {
     private readonly TFilterOptions _filterOptions;

@@ -1,4 +1,11 @@
-﻿
+﻿#if NET5_0
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.Options;
+using System;
+using System.IO;
+#endif
+
 /// <summary>
 /// Format log messages to be viewed with CMTrace.
 /// </summary>

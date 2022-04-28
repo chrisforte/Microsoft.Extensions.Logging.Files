@@ -1,4 +1,12 @@
-﻿
+﻿#if NET5_0
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
+#endif
+
 /// <summary>
 /// A type that can create instances of <see cref="FileLogger"/>
 /// </summary>

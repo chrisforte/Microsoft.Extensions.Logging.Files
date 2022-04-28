@@ -1,4 +1,11 @@
-﻿
+﻿#if NET5_0
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+using System;
+using System.IO;
+using System.Text;
+#endif
+
 /// <summary>
 /// Base type for file logging
 /// </summary>

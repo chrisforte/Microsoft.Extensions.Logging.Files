@@ -1,4 +1,5 @@
-﻿global using Microsoft.Extensions.DependencyInjection;
+﻿#if NET6_0
+global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.DependencyInjection.Extensions;
 global using Microsoft.Extensions.Logging;
 global using Microsoft.Extensions.Logging.Abstractions;
@@ -15,3 +16,5 @@ global using System.Linq;
 global using System.Reflection;
 global using System.Text;
 global using System.Threading;
+global using System.Text.Json;
+#endif

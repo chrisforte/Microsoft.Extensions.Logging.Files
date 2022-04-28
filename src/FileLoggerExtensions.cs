@@ -1,4 +1,12 @@
-﻿/// <summary>
+﻿#if NET5_0
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Configuration;
+using System;
+#endif
+
+/// <summary>
 /// Extension methods to add <see cref="FileLogger"/> to the logging configuration
 /// </summary>
 public static class FileLoggerExtensions

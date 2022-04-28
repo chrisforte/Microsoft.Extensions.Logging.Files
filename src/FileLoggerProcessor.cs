@@ -1,4 +1,15 @@
-﻿/// <summary>
+﻿#if NET5_0
+using System;
+using System.Collections.Concurrent;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading;
+#endif
+
+/// <summary>
 /// Message processor for <see cref="FileLogger"/>. Queues and writes messages to configured log files.
 /// </summary>
 public sealed class FileLoggerProcessor : IDisposable

@@ -1,4 +1,13 @@
-﻿using System.Text.Json;
+﻿#if NET5_0
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.Options;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Text.Json;
+#endif
 
 /// <summary>
 /// Format log messages as JSON objects.

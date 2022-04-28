@@ -1,4 +1,11 @@
-﻿
+﻿#if NET5_0
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.Options;
+using System;
+using System.IO;
+#endif
+
 /// <summary>
 /// Format log messages with minimal formatting.
 /// </summary>
@@ -32,7 +39,7 @@ public sealed class BasicFormatter : FileLoggerBaseFormatter
     /// <param name="textWriter"></param>
     public override void Write<TState>(in LogEntry<TState> logEntry, IExternalScopeProvider scopeProvider, TextWriter textWriter)
     {
-        string text = logEntry.Formatter!(logEntry.State, logEntry.Exception);
+        string text = logEntry.Formatter(logEntry.State, logEntry.Exception);
         if (text != null | logEntry.Exception != null)
         {
             // pid
