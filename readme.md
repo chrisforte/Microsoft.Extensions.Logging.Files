@@ -45,3 +45,7 @@ To create your own file logger format, create a class that implements the `FileL
 ```csharp
 public abstract void Write<TState>(in LogEntry<TState> logEntry, IExternalScopeProvider scopeProvider, TextWriter textWriter);
 ```
+
+## Download
+
+[![NuGet version (ChrisForte.Microsoft.Extensions.Logging.Files)](https://img.shields.io/nuget/v/ChrisForte.Microsoft.Extensions.Logging.Files.svg?style=flat-square)](https://www.nuget.org/packages/ChrisForte.Microsoft.Extensions.Logging.Files/)
