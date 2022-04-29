@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 		<RootNamespace>Microsoft.Extensions.Logging</RootNamespace>
 		<AssemblyName>Microsoft.Extensions.Logging.Files</AssemblyName>
 		<Authors>Chris Forte</Authors>
-		<Version>6.0.0.2</Version>
+		<Version>6.0.1</Version>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<ImplicitUsings>false</ImplicitUsings>
 		<Nullable>annotations</Nullable>
